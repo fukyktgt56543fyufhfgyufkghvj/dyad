@@ -247,6 +247,11 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   backdrop-filter: blur(12px) saturate(140%);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 200ms ease, box-shadow 250ms ease, background-color 200ms ease;
+}
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
 }
 
 /* Make sidebar surfaces glassy */
@@ -260,6 +265,38 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   backdrop-filter: blur(12px) saturate(140%);
 }
+
+/* Minimal, modern interactions */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+/* Apply subtle entrance to main panels */
+.glass-panel { animation: fadeInUp 400ms ease both; }
+
+/* Buttons micro-interactions */
+[data-slot="button"] {
+  transition: transform 160ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 200ms ease, color 180ms ease;
+  will-change: transform;
+}
+[data-slot="button"]:hover { transform: translateY(-1px); }
+[data-slot="button"]:active { transform: translateY(0) scale(0.98); }
+
+/* Sidebar menu buttons */
+[data-sidebar="menu-button"] {
+  transition: transform 160ms ease, background-color 180ms ease, color 180ms ease;
+}
+[data-sidebar="menu-button"]:hover { transform: translateY(-1px); }
+
+/* Icons float slightly on hover */
+button:hover svg,
+[data-sidebar="menu-button"]:hover svg { transition: transform 200ms ease, color 180ms ease; transform: translateY(-1px); }
 
 @layer base {
   :root {
