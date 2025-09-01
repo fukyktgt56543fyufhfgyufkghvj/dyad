@@ -49,9 +49,9 @@ export function ProviderSettingsPage({ provider }: ProviderSettingsPageProps) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Use fetched data (or defaults for Dyad)
+  // Use fetched data (or defaults for ALL AI)
   const providerDisplayName = isDyad
-    ? "Dyad"
+    ? "ALL AI"
     : (providerData?.name ?? "Unknown Provider");
   const providerWebsiteUrl = isDyad
     ? "https://academy.dyad.sh/settings"
@@ -143,7 +143,7 @@ export function ProviderSettingsPage({ provider }: ProviderSettingsPageProps) {
         enableDyadPro: enabled,
       });
     } catch (error: any) {
-      showError(`Error toggling Dyad Pro: ${error}`);
+      showError(`Error toggling ALL AI Pro: ${error}`);
     } finally {
       setIsSaving(false);
     }
@@ -274,9 +274,9 @@ export function ProviderSettingsPage({ provider }: ProviderSettingsPageProps) {
         {isDyad && !settingsLoading && (
           <div className="mt-6 flex items-center justify-between p-4 bg-(--background-lightest) rounded-lg border">
             <div>
-              <h3 className="font-medium">Enable Dyad Pro</h3>
+              <h3 className="font-medium">Enable ALL AI Pro</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Toggle to enable Dyad Pro
+                Toggle to enable ALL AI Pro
               </p>
             </div>
             <Switch
