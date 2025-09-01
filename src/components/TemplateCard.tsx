@@ -68,12 +68,12 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
       <div
         onClick={handleCardClick}
         className={`
-          bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden 
-          transform transition-all duration-300 ease-in-out 
+          glass-panel rounded-xl overflow-hidden
+          transform transition-all duration-300 ease-in-out
           cursor-pointer group relative
           ${
             isSelected
-              ? "ring-2 ring-blue-500 dark:ring-blue-400 shadow-xl"
+              ? "outline outline-2 outline-white/20 shadow-xl"
               : "hover:shadow-lg hover:-translate-y-1"
           }
         `}
@@ -87,7 +87,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
             }`}
           />
           {isSelected && (
-            <span className="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-lg">
+            <span className="absolute top-3 right-3 bg-black/80 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-lg">
               Selected
             </span>
           )}
@@ -97,25 +97,21 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
             <h2
               className={`text-lg font-semibold ${
                 isSelected
-                  ? "text-blue-600 dark:text-blue-400"
-                  : "text-gray-900 dark:text-white"
+                  ? "text-zinc-100"
+                  : "text-zinc-100"
               }`}
             >
               {template.title}
             </h2>
             {template.isOfficial && !template.isExperimental && (
               <span
-                className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                  isSelected
-                    ? "bg-blue-100 text-blue-700 dark:bg-blue-600 dark:text-blue-100"
-                    : "bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-200"
-                }`}
+                className={`text-xs font-semibold px-2 py-0.5 rounded-full bg-black/60 text-zinc-200`}
               >
                 Official
               </span>
             )}
             {template.isExperimental && (
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-200">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-black/60 text-zinc-200">
                 Experimental
               </span>
             )}
@@ -125,11 +121,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
           </p>
           {template.githubUrl && (
             <a
-              className={`inline-flex items-center text-sm font-medium transition-colors duration-200 ${
-                isSelected
-                  ? "text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-200"
-                  : "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-              }`}
+              className={`inline-flex items-center text-sm font-medium transition-colors duration-200 text-zinc-200 hover:text-white`}
               onClick={handleGithubClick}
             >
               View on GitHub{" "}
@@ -144,7 +136,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
             }}
             size="sm"
             className={cn(
-              "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold mt-2",
+              "w-full bg-black hover:bg-zinc-900 text-white font-semibold mt-2",
               settings?.selectedTemplateId !== template.id && "invisible",
             )}
           >
