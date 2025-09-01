@@ -597,9 +597,9 @@ export class IpcClient {
     await this.ipcRenderer.invoke("delete-messages", chatId);
   }
 
-  // Open an external URL using the default browser
-  public async openExternalUrl(url: string): Promise<void> {
-    await this.ipcRenderer.invoke("open-external-url", url);
+  // Open external URL disabled per user requirement (no external links)
+  public async openExternalUrl(_url: string): Promise<void> {
+    return;
   }
 
   public async showItemInFolder(fullPath: string): Promise<void> {
