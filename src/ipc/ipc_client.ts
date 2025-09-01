@@ -197,6 +197,8 @@ export class IpcClient {
             return {};
           case "get-language-models":
             return [];
+          case "get-templates":
+            return localTemplatesData;
           case "prompts:list":
             return previewPrompts;
           case "prompts:create": {
