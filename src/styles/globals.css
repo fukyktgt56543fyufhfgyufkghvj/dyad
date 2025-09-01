@@ -280,6 +280,13 @@ body {
 /* Apply subtle entrance to main panels */
 .glass-panel { animation: fadeInUp 400ms ease both; }
 
+/* Disable external link navigation visually */
+a[href^="http://"], a[href^="https://"] {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+}
+
 /* Buttons micro-interactions */
 [data-slot="button"] {
   transition: transform 160ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 200ms ease, color 180ms ease;
