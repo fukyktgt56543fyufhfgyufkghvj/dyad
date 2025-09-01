@@ -271,8 +271,9 @@ export class IpcClient {
           case "window:close":
             return;
         }
-        // Default: throw to surface unexpected unsupported calls
-        throw new Error("IPC not available in web preview");
+        // Default: no-op in web preview to avoid breaking UI
+        console.warn("[IPC:web-preview] Unsupported channel:", channel);
+        return undefined as any;
       };
       self.on = () => self;
       self.removeListener = () => {};
