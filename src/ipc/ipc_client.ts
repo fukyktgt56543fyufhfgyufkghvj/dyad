@@ -131,6 +131,15 @@ export class IpcClient {
         telemetryConsent: "unset",
       };
       let previewEnvVars: Record<string, string> = {};
+      let previewPrompts: Array<{
+        id: number;
+        title: string;
+        description: string | null;
+        content: string;
+        createdAt: Date;
+        updatedAt: Date;
+      }> = [];
+      let previewPromptSeq = 1;
       self.invoke = async (channel: string, ...args: any[]) => {
         switch (channel) {
           case "open-external-url": {
