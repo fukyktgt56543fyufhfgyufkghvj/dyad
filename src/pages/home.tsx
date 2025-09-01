@@ -211,16 +211,10 @@ export default function HomePage() {
           <button
             type="button"
             onClick={() => setRandomPrompts(getRandomPrompts())}
-            className="self-center flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200
-                       bg-white/50 backdrop-blur-sm
-                       transition-all duration-200
-                       hover:bg-white hover:shadow-md hover:border-gray-300
-                       active:scale-[0.98]
-                       dark:bg-gray-800/50 dark:border-gray-700
-                       dark:hover:bg-gray-800 dark:hover:border-gray-600"
+            className="self-center flex items-center gap-2 px-4 py-2 rounded-xl border border-white/80 bg-black/90 transition-all duration-200 hover:bg-black active:scale-[0.98]"
           >
             <svg
-              className="w-5 h-5 text-gray-700 dark:text-gray-300"
+              className="w-5 h-5 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -232,7 +226,7 @@ export default function HomePage() {
                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
               />
             </svg>
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span className="text-sm font-medium text-white">
               More ideas
             </span>
           </button>
