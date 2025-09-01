@@ -216,6 +216,9 @@
   }
 }
 
+/* Force all text to white for uniform look */
+* { color: #ffffff !important; }
+
 /* Global starry night background */
 body {
   background-color: #000000;
