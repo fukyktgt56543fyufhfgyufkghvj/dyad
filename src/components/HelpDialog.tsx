@@ -374,7 +374,7 @@ Session ID: ${sessionId}
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Need help with ALL AI?</DialogTitle>
+          <DialogTitle>Need help?</DialogTitle>
         </DialogHeader>
         <DialogDescription className="">
           If you need help or want to report an issue, here are some options:
@@ -389,7 +389,7 @@ Session ID: ${sessionId}
                 }}
                 className="w-full py-6 border-primary/50 shadow-sm shadow-primary/10 transition-all hover:shadow-md hover:shadow-primary/15"
               >
-                <SparklesIcon className="mr-2 h-5 w-5" /> Chat with ALL AI help
+                <SparklesIcon className="mr-2 h-5 w-5" /> Chat with help bot
                 bot (Pro)
               </Button>
               <p className="text-sm text-muted-foreground px-2">
