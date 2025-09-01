@@ -122,6 +122,15 @@ export class IpcClient {
     } else {
       // Fallback stub for web preview (no Electron preload available)
       const self: any = {};
+      let previewUserSettings: any = {
+        selectedModel: { name: "gpt-4o-mini", provider: "openai" },
+        providerSettings: {},
+        enableAutoUpdate: false,
+        releaseChannel: "stable",
+        selectedTemplateId: "default",
+        telemetryConsent: "unset",
+      };
+      let previewEnvVars: Record<string, string> = {};
       self.invoke = async (channel: string, ...args: any[]) => {
         switch (channel) {
           case "open-external-url": {
