@@ -29,8 +29,8 @@ function getKeyButtonText({
 }) {
   if (isDyad) {
     return isConfigured
-      ? "Manage Dyad Pro Subscription"
-      : "Setup Dyad Pro Subscription";
+      ? "Manage ALL AI Pro Subscription"
+      : "Setup ALL AI Pro Subscription";
   }
   return isConfigured ? "Manage API Keys" : "Setup API Key";
 }
