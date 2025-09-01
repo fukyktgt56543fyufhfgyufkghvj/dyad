@@ -183,6 +183,9 @@ export default function HomePage() {
     <div className="flex flex-col items-center justify-center max-w-3xl m-auto p-8">
 
       <div className="w-full">
+        <h1 className="moving-gradient-text text-5xl md:text-6xl lg:text-7xl font-extrabold text-center mb-6">
+          Build your dream app with ALL AI
+        </h1>
         <ImportAppButton />
         <HomeChatInput onSubmit={handleSubmit} />
 
