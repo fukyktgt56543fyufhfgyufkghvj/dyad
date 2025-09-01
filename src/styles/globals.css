@@ -298,21 +298,30 @@ body {
 button:hover svg,
 [data-sidebar="menu-button"]:hover svg { transition: transform 200ms ease, color 180ms ease; transform: translateY(-1px); }
 
-/* White border glow animation (modern/minimal) */
-@keyframes whiteGlow {
-  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
-  50% { box-shadow: 0 0 16px 2px rgba(255,255,255,0.35); }
-  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
-}
-/* Apply to any element that uses a white border/outline utility */
+/* Animated border sweep (travels along the contour) */
+@property --sweep-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes borderSweep { to { --sweep-angle: 360deg; } }
+
 [class*="border-white"],
 [class*="outline-white"] {
-  animation: whiteGlow 3.2s ease-in-out infinite;
-  will-change: box-shadow;
+  position: relative;
 }
-[class*="border-white"]:hover,
-[class*="outline-white"]:hover {
-  box-shadow: 0 0 20px 3px rgba(255,255,255,0.45);
+[class*="border-white"]::after,
+[class*="outline-white"]::after {
+  content: "";
+  position: absolute;
+  inset: -2px; /* slightly outside to sit above the border */
+  border-radius: inherit;
+  padding: 2px; /* thickness of the sweep */
+  background: conic-gradient(from var(--sweep-angle),
+    rgba(255,255,255,0) 0deg,
+    rgba(255,255,255,0) 320deg,
+    rgba(255,255,255,0.95) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: borderSweep 3.5s linear infinite;
 }
 
 @layer base {
