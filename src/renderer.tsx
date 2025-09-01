@@ -57,13 +57,15 @@ const posthogClient = posthog.init(
   {
     api_host: "https://us.i.posthog.com",
     // @ts-ignore
-    debug: import.meta.env.MODE === "development",
+    debug: false,
     autocapture: false,
     capture_exceptions: true,
     capture_pageview: false,
     before_send: (event) => {
       if (!isTelemetryOptedIn()) {
-        console.debug("Telemetry not opted in, skipping event");
+        if (import.meta.env.MODE === "development") {
+          console.debug("Telemetry not opted in, skipping event");
+        }
         return null;
       }
       const telemetryUserId = getTelemetryUserId();
@@ -75,17 +77,26 @@ const posthogClient = posthog.init(
         event.properties["$ip"] = null;
       }
 
-      console.debug(
-        "Telemetry opted in - UUID:",
-        telemetryUserId,
-        "sending event",
-        event,
-      );
+      if (import.meta.env.MODE === "development") {
+        console.debug(
+          "Telemetry opted in - UUID:",
+          telemetryUserId,
+          "sending event",
+          event,
+        );
+      }
       return event;
     },
     persistence: "localStorage",
   },
 );
+
+// Ensure no network calls when telemetry is opted out
+if (isTelemetryOptedIn()) {
+  posthog.opt_in_capturing();
+} else {
+  posthog.opt_out_capturing();
+}
 
 function App() {
   useEffect(() => {
