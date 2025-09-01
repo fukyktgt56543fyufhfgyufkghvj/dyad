@@ -41,10 +41,10 @@ const HubPage: React.FC = () => {
           Go Back
         </Button>
         <header className="mb-8 text-left">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Pick your default template
           </h1>
-          <p className="text-md text-gray-600 dark:text-gray-400">
+          <p className="text-md text-zinc-300">
             Choose a starting point for your new project.
             {isLoading && " Loading additional templates..."}
           </p>
