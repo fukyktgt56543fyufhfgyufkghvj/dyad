@@ -107,8 +107,8 @@ export function SetupBanner() {
   }
 
   const bannerClasses = cn(
-    "w-full mb-6 border rounded-xl shadow-sm overflow-hidden",
-    "border-zinc-200 dark:border-zinc-700",
+    "w-full mb-6 border rounded-xl shadow-sm overflow-hidden glass-panel",
+    "border-zinc-200/30 dark:border-zinc-700/30",
   );
 
   const getStatusIcon = (isComplete: boolean, hasError: boolean = false) => {
@@ -136,11 +136,7 @@ export function SetupBanner() {
           <AccordionItem
             value="node-setup"
             className={cn(
-              nodeCheckError
-                ? "bg-red-50 dark:bg-red-900/30"
-                : isNodeSetupComplete
-                  ? "bg-green-50 dark:bg-green-900/30"
-                  : "bg-yellow-50 dark:bg-yellow-900/30",
+              "glass-panel",
             )}
           >
             <AccordionTrigger className="px-4 py-3 transition-colors w-full hover:no-underline">
@@ -153,7 +149,7 @@ export function SetupBanner() {
                 </div>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pt-2 pb-4 bg-white dark:bg-zinc-900 border-t border-inherit">
+            <AccordionContent className="px-4 pt-2 pb-4 glass-panel border-t border-inherit">
               {nodeCheckError && (
                 <p className="text-sm text-red-600 dark:text-red-400">
                   Error checking Node.js status. Try installing Node.js.
@@ -222,56 +218,56 @@ export function SetupBanner() {
                 </div>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-4 pt-2 pb-4 bg-white dark:bg-zinc-900 border-t border-inherit">
+            <AccordionContent className="px-4 pt-2 pb-4 glass-panel border-t border-inherit">
               <p className="text-sm mb-3">
                 Connect your preferred AI provider to start generating code.
               </p>
               <div
-                className="p-3 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-700 rounded-lg cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/70 transition-colors"
+                className="p-3 glass-panel border border-zinc-700/40 rounded-lg cursor-pointer transition-colors"
                 onClick={handleAiSetupClick}
                 role="button"
                 tabIndex={isNodeSetupComplete ? 0 : -1}
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <div className="bg-blue-100 dark:bg-blue-800 p-1.5 rounded-full">
+                    <div className="bg-black/60 p-1.5 rounded-full">
                       <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-sm text-blue-800 dark:text-blue-300">
+                      <h4 className="font-medium text-sm text-zinc-100">
                         Setup Google Gemini API Key
                       </h4>
-                      <p className="text-xs text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                      <p className="text-xs text-zinc-300 flex items-center gap-1">
                         <GiftIcon className="w-3 h-3" />
                         Use Google Gemini for free
                       </p>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  <ChevronRight className="w-4 h-4 text-zinc-300" />
                 </div>
               </div>
 
               <div
-                className="mt-2 p-3 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800/70 transition-colors"
+                className="mt-2 p-3 glass-panel border border-zinc-700/40 rounded-lg cursor-pointer transition-colors"
                 onClick={handleOtherProvidersClick}
                 role="button"
                 tabIndex={isNodeSetupComplete ? 0 : -1}
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <div className="bg-gray-100 dark:bg-gray-700 p-1.5 rounded-full">
+                    <div className="bg-black/60 p-1.5 rounded-full">
                       <Settings className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-sm text-gray-800 dark:text-gray-300">
+                      <h4 className="font-medium text-sm text-zinc-100">
                         Setup other AI providers
                       </h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
+                      <p className="text-xs text-zinc-300">
                         OpenAI, Anthropic, OpenRouter and more
                       </p>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                  <ChevronRight className="w-4 h-4 text-zinc-300" />
                 </div>
               </div>
             </AccordionContent>
@@ -284,7 +280,7 @@ export function SetupBanner() {
 
 function NodeJsHelpCallout() {
   return (
-    <div className="mt-3 p-3 bg-(--background-lighter) border rounded-lg text-sm">
+    <div className="mt-3 p-3 glass-panel border rounded-lg text-sm">
       <p>
         If you run into issues, read our{" "}
         <a
@@ -293,7 +289,7 @@ function NodeJsHelpCallout() {
               "https://www.dyad.sh/docs/help/nodejs",
             );
           }}
-          className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+          className="text-zinc-200 hover:underline font-medium"
         >
           Node.js troubleshooting guide
         </a>
