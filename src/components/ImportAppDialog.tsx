@@ -158,7 +158,7 @@ export function ImportAppDialog({ isOpen, onClose }: ImportAppDialogProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="import-app-black">
         <DialogHeader>
           <DialogTitle>Import App</DialogTitle>
           <DialogDescription>
