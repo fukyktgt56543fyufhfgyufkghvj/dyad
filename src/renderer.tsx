@@ -61,6 +61,7 @@ const posthogClient = posthog.init(
     autocapture: false,
     capture_exceptions: true,
     capture_pageview: false,
+    send_in_background: true,
     before_send: (event) => {
       if (!isTelemetryOptedIn()) {
         if (import.meta.env.MODE === "development") {
