@@ -162,21 +162,44 @@ export class IpcClient {
           case "get-app-version":
             return { version: "web-preview" };
           case "get-user-settings": {
-            return {
-              selectedModel: { name: "gpt-4o-mini", provider: "openai" },
-              providerSettings: {},
-              enableAutoUpdate: false,
-              releaseChannel: "stable",
-              selectedTemplateId: "default",
-              telemetryConsent: "unset",
-            };
+            return previewUserSettings;
+          }
+          case "set-user-settings": {
+            const patch = args[0] || {};
+            previewUserSettings = { ...previewUserSettings, ...patch };
+            return previewUserSettings;
           }
           case "get-env-vars":
-            return {};
+            return previewEnvVars;
+          case "set-app-env-vars":
+            return;
           case "list-apps":
             return { apps: [], appBasePath: "" };
           case "get-chats":
             return [];
+          case "get-language-model-providers":
+            return [
+              { id: "openai", name: "OpenAI", envVarName: "OPENAI_API_KEY", type: "cloud" },
+              { id: "anthropic", name: "Anthropic", envVarName: "ANTHROPIC_API_KEY", type: "cloud" },
+              { id: "google", name: "Google", envVarName: "GOOGLE_API_KEY", type: "cloud" },
+              { id: "openrouter", name: "OpenRouter", envVarName: "OPENROUTER_API_KEY", type: "cloud" },
+            ];
+          case "get-language-models-by-providers":
+            return {};
+          case "get-language-models":
+            return [];
+          case "get-user-budget":
+            return null;
+          case "get-context-paths":
+            return { contextPaths: [], smartContextAutoIncludes: [], excludePaths: [] };
+          case "get-app-upgrades":
+            return [];
+          case "does-release-note-exist":
+            return { exists: false };
+          case "get-current-branch":
+            return { branch: "main" };
+          case "select-app-folder":
+            return { path: null, name: null };
           case "nodejs-status":
             return {
               nodeVersion: null,
@@ -194,6 +217,9 @@ export class IpcClient {
           case "rename-branch":
           case "clear-session-data":
           case "help:chat:cancel":
+          case "window:minimize":
+          case "window:maximize":
+          case "window:close":
             return;
         }
         // Default: throw to surface unexpected unsupported calls
