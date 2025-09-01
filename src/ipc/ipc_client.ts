@@ -197,6 +197,42 @@ export class IpcClient {
             return {};
           case "get-language-models":
             return [];
+          case "prompts:list":
+            return previewPrompts;
+          case "prompts:create": {
+            const params = args[0] || {};
+            const now = new Date();
+            const prompt = {
+              id: previewPromptSeq++,
+              title: params.title || "Untitled",
+              description: params.description ?? null,
+              content: params.content || "",
+              createdAt: now,
+              updatedAt: now,
+            };
+            previewPrompts = [prompt, ...previewPrompts];
+            return prompt;
+          }
+          case "prompts:update": {
+            const params = args[0] || {};
+            const idx = previewPrompts.findIndex((p) => p.id === params.id);
+            if (idx >= 0) {
+              previewPrompts[idx] = {
+                ...previewPrompts[idx],
+                title: params.title ?? previewPrompts[idx].title,
+                description:
+                  params.description ?? previewPrompts[idx].description,
+                content: params.content ?? previewPrompts[idx].content,
+                updatedAt: new Date(),
+              };
+            }
+            return;
+          }
+          case "prompts:delete": {
+            const id = args[0];
+            previewPrompts = previewPrompts.filter((p) => p.id !== id);
+            return;
+          }
           case "get-user-budget":
             return null;
           case "get-context-paths":
@@ -205,6 +241,8 @@ export class IpcClient {
             return [];
           case "does-release-note-exist":
             return { exists: false };
+          case "help:chat:start":
+            return;
           case "get-current-branch":
             return { branch: "main" };
           case "select-app-folder":
