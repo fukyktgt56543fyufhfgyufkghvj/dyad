@@ -62,7 +62,7 @@ import type {
   CreatePromptParamsDto,
   UpdatePromptParamsDto,
 } from "./ipc_types";
-import type { Template } from "../shared/templates";
+import { localTemplatesData, type Template } from "../shared/templates";
 import type { AppChatContext, ProposalResult } from "@/lib/schemas";
 import { showError } from "@/lib/toast";
 
