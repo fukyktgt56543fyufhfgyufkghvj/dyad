@@ -123,27 +123,71 @@ export class IpcClient {
       // Fallback stub for web preview (no Electron preload available)
       const self: any = {};
       self.invoke = async (channel: string, ...args: any[]) => {
-        if (channel === "open-external-url") {
-          const url = args[0] as string;
-          try {
-            window.open(url, "_blank", "noopener,noreferrer");
-          } catch {}
-          return;
+        switch (channel) {
+          case "open-external-url": {
+            const url = args[0] as string;
+            try {
+              window.open(url, "_blank", "noopener,noreferrer");
+            } catch {}
+            return;
+          }
+          case "get-system-debug-info": {
+            const platform =
+              (navigator as any)?.userAgentData?.platform || navigator.platform || "web";
+            return {
+              dyadVersion: "web-preview",
+              platform,
+              architecture: "web",
+              nodeVersion: null,
+              pnpmVersion: null,
+              nodePath: null,
+              telemetryId: "",
+              telemetryConsent: "unset",
+              telemetryUrl: "https://us.i.posthog.com",
+              logs: "",
+              selectedLanguageModel: "openai:gpt-4o-mini",
+            };
+          }
+          case "get-system-platform":
+            return "web";
+          case "get-app-version":
+            return { version: "web-preview" };
+          case "get-user-settings": {
+            return {
+              selectedModel: { name: "gpt-4o-mini", provider: "openai" },
+              providerSettings: {},
+              enableAutoUpdate: false,
+              releaseChannel: "stable",
+              selectedTemplateId: "default",
+              telemetryConsent: "unset",
+            };
+          }
+          case "get-env-vars":
+            return {};
+          case "list-apps":
+            return { apps: [], appBasePath: "" };
+          case "get-chats":
+            return [];
+          case "nodejs-status":
+            return {
+              nodeVersion: null,
+              pnpmVersion: null,
+              nodeDownloadUrl: "https://nodejs.org/en/download",
+            };
+          // No-op responses for actions in preview
+          case "restart-dyad":
+          case "reload-env-path":
+          case "delete-chat":
+          case "delete-messages":
+          case "reset-all":
+          case "chat:add-dep":
+          case "portal:migrate-create":
+          case "rename-branch":
+          case "clear-session-data":
+          case "help:chat:cancel":
+            return;
         }
-        if (channel === "get-system-debug-info") {
-          const platform =
-            (navigator as any)?.userAgentData?.platform || navigator.platform || "web";
-          return {
-            dyadVersion: "web-preview",
-            platform,
-            architecture: "web",
-            nodeVersion: null,
-            pnpmVersion: null,
-            nodePath: null,
-            telemetryId: null,
-            logs: "",
-          };
-        }
+        // Default: throw to surface unexpected unsupported calls
         throw new Error("IPC not available in web preview");
       };
       self.on = () => self;
