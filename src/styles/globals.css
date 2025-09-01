@@ -219,6 +219,9 @@
 /* Force all text to white for uniform look */
 * { color: #ffffff !important; }
 
+/* Scoped override: Import App dialog text in black */
+.import-app-black, .import-app-black * { color: #000000 !important; }
+
 /* Global starry night background */
 body {
   background-color: #000000;
