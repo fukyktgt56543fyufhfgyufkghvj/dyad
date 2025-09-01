@@ -235,11 +235,11 @@ body {
 
 /* Glassy surfaces */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   backdrop-filter: blur(12px) saturate(140%);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* Make sidebar surfaces glassy */
@@ -248,7 +248,7 @@ body {
   background-color: transparent;
 }
 [data-slot="sidebar-inner"] {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   backdrop-filter: blur(12px) saturate(140%);
