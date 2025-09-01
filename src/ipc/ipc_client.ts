@@ -113,7 +113,45 @@ export class IpcClient {
     }
   >;
   private constructor() {
-    this.ipcRenderer = (window as any).electron.ipcRenderer as IpcRenderer;
+    const electronApi = (window as any)?.electron?.ipcRenderer as
+      | IpcRenderer
+      | undefined;
+
+    if (electronApi) {
+      this.ipcRenderer = electronApi;
+    } else {
+      // Fallback stub for web preview (no Electron preload available)
+      const self: any = {};
+      self.invoke = async (channel: string, ...args: any[]) => {
+        if (channel === "open-external-url") {
+          const url = args[0] as string;
+          try {
+            window.open(url, "_blank", "noopener,noreferrer");
+          } catch {}
+          return;
+        }
+        if (channel === "get-system-debug-info") {
+          const platform =
+            (navigator as any)?.userAgentData?.platform || navigator.platform || "web";
+          return {
+            dyadVersion: "web-preview",
+            platform,
+            architecture: "web",
+            nodeVersion: null,
+            pnpmVersion: null,
+            nodePath: null,
+            telemetryId: null,
+            logs: "",
+          };
+        }
+        throw new Error("IPC not available in web preview");
+      };
+      self.on = () => self;
+      self.removeListener = () => {};
+      self.removeAllListeners = () => {};
+      this.ipcRenderer = self as IpcRenderer;
+    }
+
     this.chatStreams = new Map();
     this.appStreams = new Map();
     this.helpStreams = new Map();
