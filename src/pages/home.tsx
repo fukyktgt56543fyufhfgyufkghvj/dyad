@@ -195,18 +195,13 @@ export default function HomePage() {
                 type="button"
                 key={index}
                 onClick={() => setInputValue(`Build me a ${item.label}`)}
-                className="flex items-center gap-3 px-4 py-2 rounded-xl border border-gray-200
-                           bg-white/50 backdrop-blur-sm
-                           transition-all duration-200
-                           hover:bg-white hover:shadow-md hover:border-gray-300
-                           active:scale-[0.98]
-                           dark:bg-gray-800/50 dark:border-gray-700
-                           dark:hover:bg-gray-800 dark:hover:border-gray-600"
+                className="flex items-center gap-3 px-4 py-2 rounded-xl border border-white/80 bg-black/90
+                           transition-all duration-200 hover:bg-black active:scale-[0.98]"
               >
-                <span className="text-gray-700 dark:text-gray-300">
+                <span className="text-white">
                   {item.icon}
                 </span>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <span className="text-sm font-medium text-white">
                   {item.label}
                 </span>
               </button>
