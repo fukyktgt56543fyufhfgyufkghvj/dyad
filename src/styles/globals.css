@@ -216,8 +216,7 @@
   }
 }
 
-/* Force all text to white for uniform look */
-* { color: #ffffff !important; }
+/* Default colors come from CSS variables and Tailwind; remove global text override to allow contextual colors */
 
 /* Scoped override: Import App dialog text in black */
 .import-app-black, .import-app-black * { color: #000000 !important; }
